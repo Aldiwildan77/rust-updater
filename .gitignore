@@ -16,3 +16,6 @@
 
 # environment var
 .env
+
+# build output
+bin/
