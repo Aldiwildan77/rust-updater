@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+const URL = "https://whenisupdate.com/api.json"
+
 type RustProto interface {
 	GetWhenIsUpdate() (response RustResponse, err error)
 }
@@ -19,7 +21,7 @@ func NewRust() RustProto {
 func (rr *rust) GetWhenIsUpdate() (response RustResponse, err error) {
 	var resp *http.Response
 
-	resp, err = http.Get("https://whenisupdate.com/api.json")
+	resp, err = http.Get(URL)
 	if err != nil {
 		return
 	}
