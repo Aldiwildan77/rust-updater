@@ -48,7 +48,7 @@ func (hh *handler) GetUpdater(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, presenters.GameResponse{})
 	}
 
-	hh.Cache.SetTTL(time.Duration(3 * time.Second))
+	hh.Cache.SetTTL(time.Duration(5 * time.Minute))
 	hh.Cache.Set("old-data", res)
 
 	return c.JSON(http.StatusOK, presenters.GameResponse{
