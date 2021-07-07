@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: "rust-updater"
+    image: ghcr.io/aldiwildan77/rust-updater:latest
+    environment:
+      - PORT=8000
+    ports:
+      - 8000:8000
+    restart: on-failure
+    networks:
+      - backend
+
+networks:
+  backend:

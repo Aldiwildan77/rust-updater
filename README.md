@@ -14,6 +14,10 @@ This repository is for update notifications from the rust game which helps serve
 2. Build the project using command `docker build . `
 3. Start the project using command `docker run -h localhost -p 8000:8000 -e PORT=8000 rust-updater-api_app:latest`
 
+### Docker Compose:
+1. Make sure you have installed docker and docker-compose on your machine.
+2. Start the container (detached) using command `docker-compose up -d --build`
+
 ## Contact
 If you need more information please join the discord: https://discord.chroma-gaming.xyz/
 
