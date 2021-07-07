@@ -23,5 +23,5 @@ func (ur *Route) Init(e *echo.Echo) {
 	g := e.Group("/api")
 
 	r := g.Group("/notifier")
-	r.GET("/", ur.Handler.GetUpdater)
+	r.GET("", ur.Handler.GetUpdater)
 }
