@@ -21,10 +21,6 @@ func NewUsecase() UsecaseProto {
 }
 
 func (uc *usecase) GetListPayment() (res presenters.UpdaterResponse, err error) {
-	var snResp steam.SteamResponse
-	var oResp oxide.OxideResponse
-	var rResp rust.RustResponse
-
 	req := steam.SteamRequest{
 		Appid:     "252490",
 		Count:     "1",
@@ -32,17 +28,17 @@ func (uc *usecase) GetListPayment() (res presenters.UpdaterResponse, err error) 
 		Format:    "json",
 	}
 
-	snResp, err = steam.NewSteam().GetSteamNews(req)
+	snResp, err := steam.NewSteam().GetSteamNews(req)
 	if err != nil {
 		return presenters.UpdaterResponse{}, err
 	}
 
-	oResp, err = oxide.NewOxide().GetOxideRelease()
+	oResp, err := oxide.NewOxide().GetOxideRelease()
 	if err != nil {
 		return presenters.UpdaterResponse{}, err
 	}
 
-	rResp, err = rust.NewRust().GetWhenIsUpdate()
+	rResp, err := rust.NewRust().GetWhenIsUpdate()
 	if err != nil {
 		return presenters.UpdaterResponse{}, err
 	}

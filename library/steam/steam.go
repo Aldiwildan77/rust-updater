@@ -20,6 +20,7 @@ func NewSteam() SteamProto {
 
 func (rr *steam) GetSteamNews(req SteamRequest) (response SteamResponse, err error) {
 	var reqInf map[string]string
+
 	inrec, _ := json.Marshal(req)
 	json.Unmarshal(inrec, &reqInf)
 

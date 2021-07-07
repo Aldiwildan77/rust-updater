@@ -36,10 +36,8 @@ func (hh *handler) GetUpdater(c echo.Context) error {
 	}()
 
 	if val, err := hh.Cache.Get("old-data"); err != ttlcache.ErrNotFound {
-		return c.JSON(http.StatusOK, presenters.Response{
-			Status:  true,
-			Data:    val,
-			Message: "Notifier Fetched",
+		return c.JSON(http.StatusOK, presenters.GameResponse{
+			UpdaterResponse: val.(presenters.UpdaterResponse),
 		})
 	}
 
@@ -47,18 +45,13 @@ func (hh *handler) GetUpdater(c echo.Context) error {
 	res, err := dm.GetListPayment()
 
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, presenters.Response{
-			Status:  false,
-			Message: "Failed to get data",
-		})
+		return c.JSON(http.StatusInternalServerError, presenters.GameResponse{})
 	}
 
 	hh.Cache.SetTTL(time.Duration(3 * time.Second))
 	hh.Cache.Set("old-data", res)
 
-	return c.JSON(http.StatusOK, presenters.Response{
-		Status:  true,
-		Data:    res,
-		Message: "Notifier Fetched",
+	return c.JSON(http.StatusOK, presenters.GameResponse{
+		UpdaterResponse: res,
 	})
 }

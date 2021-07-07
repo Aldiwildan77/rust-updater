@@ -6,6 +6,10 @@ type Response struct {
 	Message string      `json:"message"`
 }
 
+type GameResponse struct {
+	UpdaterResponse
+}
+
 type UpdaterResponse struct {
 	Client  int `json:"client"`
 	Devblog int `json:"devblog"`
