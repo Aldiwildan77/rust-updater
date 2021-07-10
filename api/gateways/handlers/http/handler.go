@@ -1,6 +1,7 @@
 package http
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"time"
@@ -10,6 +11,11 @@ import (
 	"github.com/Aldiwildan77/rust-notifier-api/config"
 	"github.com/ReneKroon/ttlcache/v2"
 	"github.com/labstack/echo/v4"
+)
+
+var (
+	ttl = 5 * time.Minute
+	cn  = "old-data"
 )
 
 type HandlerProto interface {
@@ -35,21 +41,21 @@ func (hh *handler) GetUpdater(c echo.Context) error {
 		}
 	}()
 
-	if val, err := hh.Cache.Get("old-data"); err != ttlcache.ErrNotFound {
+	if val, err := hh.Cache.Get(cn); err != ttlcache.ErrNotFound {
 		return c.JSON(http.StatusOK, presenters.GameResponse{
 			UpdaterResponse: val.(presenters.UpdaterResponse),
 		})
 	}
 
-	dm := domains.NewUsecase()
-	res, err := dm.GetListPayment()
+	dm := domains.NewUsecase(context.Background())
+	res, err := dm.GetListUpdates()
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, presenters.GameResponse{})
 	}
 
-	hh.Cache.SetTTL(time.Duration(5 * time.Minute))
-	hh.Cache.Set("old-data", res)
+	hh.Cache.SetTTL(time.Duration(ttl))
+	hh.Cache.Set(cn, res)
 
 	return c.JSON(http.StatusOK, presenters.GameResponse{
 		UpdaterResponse: res,
