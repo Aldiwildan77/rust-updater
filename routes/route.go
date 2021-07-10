@@ -11,6 +11,7 @@ import (
 
 func Register(e *echo.Echo) {
 	e.Pre(middleware.RemoveTrailingSlash())
+	e.Use(middleware.Logger())
 
 	e.GET("/health", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Iam fine thanks")
