@@ -2,6 +2,9 @@
 
 This repository is for update notifications from the rust game which helps server admins to get official game updates
 
+## Game Plugin
+To make this API works, please install this [Rust Plugin](https://github.com/Psystec/RUST-Update-Notice) into your Rust server.
+
 ## How to build
 ### Native build:
 1. Please check your current OS and Architecture, run `go env`.
