@@ -14,7 +14,7 @@ func Register(e *echo.Echo) {
 	e.Use(middleware.Logger())
 
 	e.GET("/health", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Iam fine thanks")
+		return c.String(http.StatusOK, "I am fine thanks")
 	})
 
 	routes.NewRoute(api.ProvideHandler()).Init(e)
