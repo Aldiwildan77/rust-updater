@@ -5,6 +5,9 @@ RUN apk update && apk upgrade && \
 
 WORKDIR /go/src/github.com/Aldiwildan77/rust-updater
 
+# author
+LABEL maintainer="Aldiwildan77"
+
 COPY . .
 
 RUN go mod download && \
