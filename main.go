@@ -16,6 +16,8 @@ func main() {
 	e := echo.New()
 
 	routes.Register(e)
+  
+  fmt.Println("[RUST UPDATER] Created by Aldiwildan77")
 
 	go func() {
 		if err := e.Start(":" + fmt.Sprint(config.Cfg.Port)); err != nil {
